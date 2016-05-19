@@ -18,21 +18,35 @@ main =
 -- MODEL
 type alias Model = Vurdering
 
-model : Model
-model = {arketype = "Parcelhus"
-        , bygning = "Bygningen"
-        , adresse = "Nabovej 123"
-        , ejdvaerdi = 10000
-        }
-
-
 type alias Vurdering =
-  { arketype : String -- beboelse / erhverv
-  , bygning : String
+  { bygninger : List Bygning
   , adresse: String
-  , ejdvaerdi : Int
   }
 
+type alias Bygning =
+  {arketype : String -- beboelse / erhverv
+  , ejdvaerdi : Int
+  , kvm : Int
+  , vaegt : Float
+  }
+    
+                 
+model : Model
+model = {bygninger = [{ arketype = "Parcelhus"
+                      , ejdvaerdi = 1000
+                      , kvm = 150
+                      , vaegt = 0.8
+                      }
+                     ,{ arketype = "Erhverv"
+                      , ejdvaerdi = 800
+                      , kvm = 75
+                      , vaegt = 0.4
+                      }
+                     ] 
+        , adresse = "Nabovej 123" 
+        }
+
+                     
 
 -- UPDATE
 
@@ -63,17 +77,16 @@ view model = div [style [("height", "100%")
              
 block : Model -> Html Msg
 block model = div [ style [("display", "flex")
-                           , ( "background-color", "Green")
+                          , ( "background-color", "Green")
                           , ("justify-content", "center")
                           , ("align-items", "center")
                           ,( "cursor" , "move")
                           ,( "width" , "100px")
                           ,( "height" , "100px")
                           , ("border-radius" , "4px")
-                          , ("color" , "white")
-                        
+                          , ("color" , "white") 
                           ]
-                      ]
+                  ]
               [text "Bygning"]
               
                      
