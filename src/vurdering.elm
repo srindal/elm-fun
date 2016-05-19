@@ -24,20 +24,21 @@ type alias Vurdering =
   }
 
 type alias Bygning =
-  {arketype : String -- beboelse / erhverv
+  {arketype : Arketype -- beboelse / erhverv
   , ejdvaerdi : Int
   , kvm : Int
   , vaegt : Float
   }
-    
+
+type Arketype = Privat | Erhverv
                  
 model : Model
-model = {bygninger = [{ arketype = "Parcelhus"
+model = {bygninger = [{ arketype = Privat
                       , ejdvaerdi = 1000
                       , kvm = 150
                       , vaegt = 0.8
                       }
-                     ,{ arketype = "Erhverv"
+                     ,{ arketype = Erhverv
                       , ejdvaerdi = 800
                       , kvm = 75
                       , vaegt = 0.4
