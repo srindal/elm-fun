@@ -69,26 +69,24 @@ view model = div [style [("height", "100%")
              , div [style [("display", "flex")
                          , ("align-items", "center")
                          , ("justify-content", "space-around")]]
-                     [ block model
-                     , block model
-                     ]
+                 (List.map block model.bygninger)
+             --[block (List.head model.bygninger)]
              ]
-             
-            
-             
-block : Model -> Html Msg
-block model = div [ style [("display", "flex")
-                          , ( "background-color", "Green")
-                          , ("justify-content", "center")
-                          , ("align-items", "center")
-                          ,( "cursor" , "move")
-                          ,( "width" , "100px")
-                          ,( "height" , "100px")
-                          , ("border-radius" , "4px")
-                          , ("color" , "white") 
-                          ]
-                  ]
-              [text "Bygning"]
+                          
+block : Bygning -> Html Msg
+block bygning =
+  div [ style [("display", "flex")
+              , ( "background-color", "Green")
+              , ("justify-content", "center")
+              , ("align-items", "center")
+              ,( "cursor" , "move")
+              ,( "width" , "100px")
+              ,( "height" , "100px")
+              , ("border-radius" , "4px")
+              , ("color" , "white") 
+              ]
+      ]
+      [text (toString bygning.ejdvaerdi)]
               
                      
 
