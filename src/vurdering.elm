@@ -45,7 +45,37 @@ update msg model =
 
 -- VIEW
 view : Model -> Html Msg
-view model = div [] [ text (toString model) ]
-
+view model = div [style [("height", "100%")
+                        , ("display", "flex")
+                        , ("border", "5px solid black")
+                        , ("margin", "5px")
+                        , ("flex-direction", "column")]]
+             [ text (toString model)
+             , div [style [("display", "flex")
+                         , ("align-items", "center")
+                         , ("justify-content", "space-around")]]
+                     [ block model
+                     , block model
+                     ]
+             ]
+             
+            
+             
+block : Model -> Html Msg
+block model = div [ style [("display", "flex")
+                           , ( "background-color", "Green")
+                          , ("justify-content", "center")
+                          , ("align-items", "center")
+                          ,( "cursor" , "move")
+                          ,( "width" , "100px")
+                          ,( "height" , "100px")
+                          , ("border-radius" , "4px")
+                          , ("color" , "white")
+                        
+                          ]
+                      ]
+              [text "Bygning"]
+              
+                     
 
 -- INIT
