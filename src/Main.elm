@@ -68,7 +68,7 @@ updateHelp msg ({position, drag} as model) =
 -- SUBSCRIPTIONS
 
 
-subscriptions : Model -> Sub Msg
+
 subscriptions model =
   case model.drag of
     Nothing ->
@@ -94,10 +94,10 @@ view model =
     div
       [ onMouseDown
       , style
-          [ "background-color" => "Green"
+          [ "background-color" => "Red"
           , "cursor" => "move"
 
-          , "width" => px realPosition.x
+          , "width" => px realPosition.y
           , "height" => px realPosition.y
           , "border-radius" => "4px"
           , "position" => "absolute"
