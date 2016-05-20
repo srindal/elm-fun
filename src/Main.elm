@@ -34,7 +34,7 @@ type alias Drag =
 
 init : ( Model, Cmd Msg )
 init =
-  ( Model (Position 0) Nothing, Cmd.none )
+  ( Model (Position 200 200) Nothing, Cmd.none )
 
 
 
@@ -42,7 +42,7 @@ init =
 
 
 type Msg
-    = DragStart Int
+    = DragStart Position Int
     | DragAt Position
     | DragEnd Position
 
@@ -55,8 +55,8 @@ update msg model =
 updateHelp : Msg -> Model -> Model
 updateHelp msg ({position, drag} as model) =
   case msg of
-    DragStart idx ->
-      Model position (Just (Drag 200 200)) idx
+    DragStart xy idx ->
+      Model position (Just (Drag xy xy)) idx
 
     DragAt xy ->
       Model position (Maybe.map (\{start} -> Drag start xy) drag)
@@ -111,7 +111,7 @@ view model =
           , "justify-content" => "center"
           ]
       ]
-      [ text (toString realPosition.x ++ "-" ++ toString realPosition.y ++ toString model.idx)
+      [ text (toString realPosition.x ++ "-" ++ toString realPosition.y ++ toString id
       ]
 
 
@@ -134,4 +134,4 @@ getPosition {position, drag} =
 
 onMouseDown : Attribute Msg
 onMouseDown =
-  on "mousedown" (Json.map DragStart 1)
+  on "mousedown" (Json.map DragStart Mouse.position 1)
